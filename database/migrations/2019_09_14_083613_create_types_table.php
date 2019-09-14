@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusesTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,17 @@ class CreateBusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();//Usuario
-            $table->unsignedBigInteger('operacion_id')->unsigned()->nullable();//Targeta de Operacion
             //Custom
-            $table->text('placa')->nullable();
-            $table->text('marca')->nullable();
-            $table->text('chasis')->nullable();
-            $table->text('modelo')->nullable();
-            $table->text('asientos')->nullable();
+            $table->text('nombre');
             $table->enum('estado', ['ACTIVO', 'INACTIVO','ELIMINADO'])->default('ACTIVO');
-            $table->timestamps();
             //RELATIONS
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->foreign('operacion_id')->references('id')->on('operation_cards')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
+            $table->timestamps();
         });
     }
 
@@ -43,6 +34,6 @@ class CreateBusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('types');
     }
 }

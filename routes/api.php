@@ -41,7 +41,7 @@ Route::get('list_program', 'API_ProgramController@list');
 Route::get('list_program_JSON', 'API_ProgramController@list_JSON');
 
 
-Route::get('list_tarjeta', 'API_TarjetaOperacionController@list');
+Route::get('list_tipos', 'API_TiposController@list');
 Route::get('list_servicios', 'API_ServiciosController@list');
 
 //WEB APP

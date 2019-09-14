@@ -4,24 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Type extends Model
 {
     protected $fillable = [
-        
         'user_id',
-        'razon_social',
-        'servicio',
-        'direccion',
-        'telefono',
-        'web',
-        'email',
-        'contacto',
-        'logo',
+        'nombre',
         'estado'
-
     ];
+    
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }

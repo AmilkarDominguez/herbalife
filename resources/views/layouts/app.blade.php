@@ -56,9 +56,7 @@
                                     <i class="icon-docs"></i>Contenido
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownReportes">
-                                    <a class="dropdown-item" href="{{ route('servicio.index') }}">Servicio</a>
-                                    <a class="dropdown-item" href="{{ route('targeta_operaciones.index') }}">Targeta de Operaciones</a>
-                                    <a class="dropdown-item" href="{{ route('bus.index') }}">Buses</a>
+                                    <a class="dropdown-item" href="{{ route('productos.index') }}">Producto</a>
                                 </div>
                             </li>
                            
@@ -68,7 +66,7 @@
                                 </a>                            
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAdministracion">
                                     <a class="dropdown-item" href="{{ route('institutional.index') }}">Institucional</a>
-                                    <a class="dropdown-item" href="{{ route('zonas.index') }}">Zonas</a>
+                                    <a class="dropdown-item" href="{{ route('tipos.index') }}">Tipos</a>
                                 </div>
                             </li>
                            
