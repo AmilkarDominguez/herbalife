@@ -8,8 +8,8 @@ class APPController extends Controller
     {
         return view('app_.institucional');
     }  
-    public function servicios()
+    public function productos()
     {
-        return view('app_.servicios');
+        return view('app_.productos');
     }  
 }

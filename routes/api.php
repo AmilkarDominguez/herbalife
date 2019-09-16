@@ -42,7 +42,9 @@ Route::get('list_program_JSON', 'API_ProgramController@list_JSON');
 
 
 Route::get('list_tipos', 'API_TiposController@list');
-Route::get('list_servicios', 'API_ServiciosController@list');
+
+Route::get('list_productos', 'API_ProductosController@list');
+Route::get('list_productos_JSON', 'API_ProductosController@list_JSON');
 
 //WEB APP
 Route::get('herbalife', 'APPController@institucional');

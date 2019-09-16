@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontello.css') }}">
-    <meta name="theme-color" content="#E95420" />
+    <meta name="theme-color" content="#7CC143" />
 </head>
 
 <body class="grey lighten-3">
@@ -33,17 +33,17 @@
         <ul class="sidenav" id="mobile-demo">
             <li>
                 <div class="user-view">
-                    <div class="background red darken-4">
+                    <div class="background white">
                         <!--<img src="/images/Presenters/3.png">-->
                     </div>
-                    <a href="#user"><img class="circle" src="/images/logo.jpg"></a>
-                    <a href="#name"><span class="white-text name">Terminal</span></a>
-                    <a href="#email"><span class="white-text email">Tarija</span></a>
+                    <a><img class="circle" src="/images/logo.png"></a>
+                    <a><span class="green-text name">Herbalife</span></a>
+                    <a><span class="green-text email">Tarija</span></a>
                 </div>
             </li>
-            <li><a href="{{ route('screem_institucional') }}"><i class="red-text text-darken-4 icon-info-circled"></i>Información</a></li>
+            <li><a href="{{ route('screem_institucional') }}"><i class="green-text icon-info-circled"></i>Información</a></li>
             <li><div class="divider"></div></li>
-            <li><a href="{{ route('screem_servicios') }}"><i class="red-text text-darken-4 icon-megaphone"></i>Servicios</a></li>
+            <li><a href="{{ route('screem_productos') }}"><i class="green-text icon-basket"></i>Productos</a></li>
         </ul>
     </header>
     <main>

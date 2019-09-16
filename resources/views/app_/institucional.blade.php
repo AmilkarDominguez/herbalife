@@ -8,7 +8,7 @@ INFORMACIÓN
 
 <div class="row">
     <div align='center' class="col s12">
-        <h5 class="red-text text-darken-4">Acerca de nosotros</h5>
+        <h5 class="green-text text-darken-4">Acerca de nosotros</h5>
     </div>
     <div id="informacion" class="col s12">
             
@@ -17,7 +17,7 @@ INFORMACIÓN
 
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn red-darken-4" onclick="location.reload();">
+    <a class="btn-floating btn green-darken-4" onclick="location.reload();">
         <i class="icon-ccw"></i>
     </a>
 </div>
@@ -43,9 +43,9 @@ function Institucional() {
 
             code += '<div class="card">';
             code += '<div class="card-content">';
-            code += '<p class="flow-text red-text text-darken-4">MISIÓN</p>';
+            code += '<p class="flow-text green-text text-darken-4">MISIÓN</p>';
             code += '<p>'+value.mision+'</p>';
-            code += '<p class="flow-text red-text text-darken-4">VISIÓN</p>';
+            code += '<p class="flow-text green-text text-darken-4">VISIÓN</p>';
             code += '<p>'+value.vision+'</p>';
             code += '<br>';
             code += '<p><b><i class="icon-map-signs"></i>Dirección: </b>'+value.direccion+'</p>';
@@ -53,7 +53,7 @@ function Institucional() {
             code += '<p><b><i class="icon-mail"></i>Correo: </b>'+value.email+'</p>';
             code += '</div>';
             code += '<div class="card-action">';
-            code += '<a href="googlechrome://'+value.web+'" target="_blank"  class="flow-text red-text text-darken-4">ver más.</a>';
+            code += '<a href="googlechrome://'+value.web+'" target="_blank"  class="flow-text green-text text-darken-4">ver más.</a>';
             code += '</div>';
             code += '</div>';
 
