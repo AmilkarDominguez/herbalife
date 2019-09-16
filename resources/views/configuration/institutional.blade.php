@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 class="card-title text-danger">Instituciones</h2>
+                        <h2 class="card-title text-success">Instituciones</h2>
                     </div>
                     
                     <div class="col-sm-6 d-flex justify-content-end">
@@ -124,7 +124,7 @@
                             <div class="md-form mb-3">
                                     <label for="estado"><b>Estado:</b></label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="estado_activo" name="estado" class="custom-control-input bg-danger"
+                                    <input type="radio" id="estado_activo" name="estado" class="custom-control-input bg-success"
                                         value="ACTIVO" checked>
                                     <label class="custom-control-label" for="estado_activo">Activo</label>
                                 </div>

@@ -45,4 +45,4 @@ Route::get('list_tipos', 'API_TiposController@list');
 Route::get('list_servicios', 'API_ServiciosController@list');
 
 //WEB APP
-Route::get('terminal', 'APPController@institucional');
+Route::get('herbalife', 'APPController@institucional');
