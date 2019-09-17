@@ -1,7 +1,7 @@
 var table;
 var id=0;
 
-var title_modal_data = " Agregar Producto";
+var title_modal_data = " Agregar Rutina";
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     catch_parameters();
     ListDatatable();
-    SelectTipo();
+    dateEntry();
 });
 
 // datatable catalogos
@@ -27,15 +27,13 @@ function ListDatatable()
             "url": "/js/assets/Spanish.json"
         },
         ajax: {
-            url: 'producto_dt'
+            url: 'rutina_dt'
             
         },
         columns: [
             { data: 'user.name'},
-            { data: 'type.nombre'},
-            { data: 'nombre'},
-            { data: 'presentacion'},
-            { data: 'precio'},
+            { data: 'nombre_rutina'},
+            { data: 'fecha'},
             { data: 'Imagen',   orderable: false, searchable: false },
             { data: 'estado',
             "render": function (data, type, row) {
@@ -51,7 +49,7 @@ function ListDatatable()
                 }
             },
             { data: 'Editar',   orderable: false, searchable: false },
-            { data: 'Eliminar', orderable: false, searchable: false },
+            { data: 'Eliminar',   orderable: false, searchable: false },
         ],
         buttons: [
             {
@@ -98,11 +96,10 @@ function ListDatatable()
         ],
     });
 };
-
 // guarda los datos nuevos
 function Save() {
     $.ajax({
-        url: "productos",
+        url: "rutinas",
         method: 'post',
         data: catch_parameters(),
         
@@ -126,7 +123,7 @@ function Save() {
 // captura los datos
 function Edit(id) {
     $.ajax({
-        url: "productos/{producto}/edit",
+        url: "rutinas/{rutina}/edit",
         method: 'get',
         data: {
             id: id
@@ -148,10 +145,8 @@ function show_data(obj) {
     ClearInputs();
     obj = JSON.parse(obj);
     id= obj.id;
-    $("#type_id").val(obj.type_id);
-    $("#nombre").val(obj.nombre);
-    $("#presentacion").val(obj.presentacion);
-    $("#precio").val(obj.precio);
+    $("#nombre_rutina").val(obj.nombre_rutina);
+    $("#fecha").val(obj.fecha);
     $('#image').attr('src', obj.foto);
     $('#label_image').html(obj.foto);
     if (obj.estado == "ACTIVO") {
@@ -172,7 +167,7 @@ function Update() {
     var data_new = $(".form-data").serialize();
     if (data_old != data_new) {
         $.ajax({
-            url: "productos/{producto}",
+            url: "rutinas/{rutina}",
             method: 'put',
             data: catch_parameters(),
             success: function (result) {
@@ -201,7 +196,7 @@ function Delete(id_) {
 }
 $("#btn_delete").click(function () {
     $.ajax({
-        url: "productos/{producto}",
+        url: "rutinas/{rutina}",
         method: 'delete',
         data: {
             id: id
@@ -247,7 +242,7 @@ function catch_parameters()
     data += "&id="+id;
     data += "&extension_image=" + extension_image;
     data +="&image=" + reader.result;
-    console.log(data);
+    //console.log(data);
     return data;
     
 }
@@ -297,34 +292,6 @@ function ClearInputs() {
     $("#form-data")[0].reset();
     id=0;
 };
-
-function SelectTipo() {
-    $.ajax({
-        url: "/api/list_tipos",
-        method: 'get',
-        success: function (result) {
-            var code = '<div class="form-group">';
-            code += '<label><b>Tipos de Productos:</b></label>';
-            code += '<select class="form-control" name="type_id" id="type_id" required>';
-            code += '<option disabled value="" selected>(Seleccionar)</option>';
-            $.each(result, function (key, value) {
-                code += '<option value="' + value.id + '">' + value.nombre + '</option>';
-            });
-            code += '</select>';
-            code += '<div class="invalid-feedback">';
-            code += 'Dato necesario.';
-            code += '</div>';
-            code += '</div>';
-            $("#select_tipo").html(code);
-        },
-        error: function (result) {
-           
-            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
-            console.log(result);
-        },
-
-    });
-}
 //Metodos para imagen
 var reader = new FileReader();
 var extension_image = "";
@@ -343,4 +310,10 @@ function ImgPreview(input) {
         }
         reader.readAsDataURL(input.files[0]);
     }
+}
+//fecha de entrada
+function dateEntry() {
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
 }
