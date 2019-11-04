@@ -12,8 +12,9 @@ use Validator;
 class InstitutionalController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRol(['user', 'ADMINISTRADOR']);
         return view('configuration.institutional');
     }
     public function store(Request $request)

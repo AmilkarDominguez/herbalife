@@ -16,12 +16,15 @@ class UsersTableSeeder extends Seeder
         
         ////////////////////////////////////////    
         // ROLES//
-        $root = Role::create([
-            'name'   => 'Administrador del Sitio',
-            'slug'   => 'root',
-            'description' =>'Todos los privilegios',
-            'special'=> 'all-access'
+        $rol_admin = App\Role::create([
+            'name' => 'ADMINISTRADOR',
+            'description' => 'Rol Administrador.'
         ]);
+        App\Role::create([
+            'name' => 'ESTANDAR',
+            'description' => 'Rol Estandar.'
+        ]);
+
         //CREA EL USUARIOS
         $admin = App\User::create([
             'name' => 'admin',
@@ -32,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'remember_token' => str_random(10)            
         ]);
         //ASIGNACION DE ROLES
-        $admin->assignRoles('root');
+        $admin->roles()->attach($rol_admin); 
 
 
     }

@@ -154,4 +154,5 @@
     var user_id={{ Auth::user()->id }};
 </script>
 <script src="{{ URL::asset('js/scripts/avisos.js') }}"></script>
-@endsection
+@extends('layouts.app')
+@section('content')

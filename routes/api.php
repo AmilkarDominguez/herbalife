@@ -48,3 +48,17 @@ Route::get('list_productos_JSON', 'API_ProductosController@list_JSON');
 
 //WEB APP
 Route::get('herbalife', 'APPController@institucional');
+
+///API Authentication
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'API\Auth\AuthController@login')->name('login');
+    Route::post('register', 'API\Auth\AuthController@register');
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'API\Auth\AuthController@logout');
+        Route::get('user', 'API\Auth\AuthController@user');
+    });
+});
