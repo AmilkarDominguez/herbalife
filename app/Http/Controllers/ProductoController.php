@@ -37,18 +37,6 @@ class ProductoController extends Controller
             return response()->json(['success'=>true,'msg'=>'Registro existoso.']);
         }
     }
-
-    public function show(Request $request)
-    {
-        $Product = Product::find($id);
-        return $Product->toJson();
-    }
-    public function edit(Request $request)
-    {
-        $Product = Product::find($request->id);
-        return $Product->toJson();
-    }
-
     public function update(Request $request)
     {
         $rule = new ProductRequest();        
@@ -61,15 +49,28 @@ class ProductoController extends Controller
             $Product = Product::find($request->id);
             $Product->update($request->all());
 
-            if($request->foto&&$request->extension_image){
+            if($request->image&&$request->extension_image){
                 //Delete File
-                Storage::disk('public')->delete($Product->foto);
-                $this->SaveFile($Product,$request->foto, $request->extension_image, '/images/Productos/');
+                Storage::disk('public')->delete($Product->image);
+                $this->SaveFile($Product,$request->image, $request->extension_image, '/images/Productos/');
+                //return response()->json(['success'=>true,'msg'=>$request->extension_image]);
             }
 
             return response()->json(['success'=>true,'msg'=>'Se actualizo existosamente.']);
         }
     }
+    public function show(Request $request)
+    {
+        $Product = Product::find($id);
+        return $Product->toJson();
+    }
+    public function edit(Request $request)
+    {
+        $Product = Product::find($request->id);
+        return $Product->toJson();
+    }
+
+
     public function destroy(Request $request)
     {
         $Product = Product::find($request->id);

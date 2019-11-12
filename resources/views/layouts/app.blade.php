@@ -24,7 +24,7 @@
     <!-- Tempusdominus DateTime Picker-->
     <link rel="stylesheet" href="{{ asset('css/tempusdominus-bootstrap-4.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/bootstrap3.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     
 </head>
 <body>

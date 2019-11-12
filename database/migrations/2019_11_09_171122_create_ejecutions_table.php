@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoutinesTable extends Migration
+class CreateEjecutionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,23 @@ class CreateRoutinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routines', function (Blueprint $table) {
+        Schema::create('ejecutions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
             //Custom
+            $table->unsignedBigInteger('detail_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();//Usuario
-            $table->text('nombre_rutina')->nullable();
+            $table->text('dosis')->nullable();
             $table->date('fecha')->nullable();
-            // $table->text('foto')->nullable();
+            $table->enum('verificado', ['OK', 'PENDIENTE','PROCESO'])->default('PENDIENTE');
             $table->enum('estado', ['ACTIVO', 'INACTIVO','ELIMINADO'])->default('ACTIVO');
             //RELATIONS
+            $table->foreign('detail_id')->references('id')->on('details')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 
@@ -36,6 +40,6 @@ class CreateRoutinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routines');
+        Schema::dropIfExists('ejecutions');
     }
 }

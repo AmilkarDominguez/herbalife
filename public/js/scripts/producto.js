@@ -162,14 +162,14 @@ function show_data(obj) {
     }
     $("#title-modal").html("Editar Registro");
 
-    data_old = $(".form-data").serialize();
+    data_old = catch_parameters();
 
     $('#modal_datos').modal('show');
 };
 
 // actualiza los datos
 function Update() {
-    var data_new = $(".form-data").serialize();
+    var data_new = catch_parameters();
     if (data_old != data_new) {
         $.ajax({
             url: "productos/{producto}",
@@ -247,7 +247,7 @@ function catch_parameters()
     data += "&id="+id;
     data += "&extension_image=" + extension_image;
     data +="&image=" + reader.result;
-    console.log(data);
+    //console.log(data);
     return data;
     
 }
@@ -331,9 +331,10 @@ var extension_image = "";
 $("#foto").change(function (e) {
     ImgPreview(this);
     $fileName = e.target.files[0].name;
+
     extension_image = $fileName.replace(/^.*\./, '');
     $('#label_image').html($fileName);
-    //console.log(extension_image);
+    console.log(extension_image);
 });
 function ImgPreview(input) {
     if (input.files && input.files[0]) {
