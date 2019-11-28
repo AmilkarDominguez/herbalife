@@ -49,6 +49,9 @@ Route::get('list_productos_JSON', 'API_ProductosController@list_JSON');
 //WEB APP
 Route::get('herbalife', 'APPController@institucional');
 
+
+Route::get('productos', 'API\ProductsController@list')->name('productos');
+
 ///API Authentication
 Route::group([
     'prefix' => 'auth'

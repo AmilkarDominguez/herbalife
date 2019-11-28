@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $User = auth()->user();
         if ($User->state=="ACTIVO"){
-            return view('home');
+            return view('configuration.institutional');
         }else{
             auth()->logout();
             return view('inactive');

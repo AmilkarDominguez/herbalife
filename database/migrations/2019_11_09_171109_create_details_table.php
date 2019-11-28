@@ -20,6 +20,7 @@ class CreateDetailsTable extends Migration
             $table->unsignedBigInteger('routine_id')->unsigned()->nullable();
             $table->unsignedBigInteger('product_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();//Usuario
+            $table->unsignedBigInteger('client_id')->unsigned()->nullable();//Cliente
             $table->text('dosis')->nullable();
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
@@ -33,6 +34,9 @@ class CreateDetailsTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('client_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
