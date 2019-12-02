@@ -7,14 +7,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 class="card-title text-success">Instituciones</h2>
+                        <h2 class="card-title text-success">Asignar plan a cliente</h2>
                     </div>
                     
-                    <!-- <div class="col-sm-6 d-flex justify-content-end">
+                    <div class="col-sm-6 d-flex justify-content-end">
                         <button class="btn btn-outline-success" id="btn-agregar">
                             <i class="icon-plus"></i>&nbsp;Agregar
                         </button>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="row p-2">
                     <div class="col-sm-12" id="msg-global">
@@ -32,13 +32,12 @@
                         <thead>
                             <tr>
                                 <td>Registrado por</td>
-                                <td>Misión</td>
-                                <td>Visión</td>
-                                <td>Dirección</td>
-                                <td>Teléfono</td>
-                                <td>Web</td>
-                                <td>Correo Electrónico</td>
-                                <td>Contácto</td>
+                                <td>Código cliente</td>
+                                <td>Fecha inicio</td>
+                                <td>Fecha fin</td>
+                                <td>Hora alarma</td>
+                                <td>Mensaje alarma</td>
+                                <td>Verificación</td>
                                 <td>Estado</td>
                                 <td>Editar</td>
                                 <td>Eliminar</td>
@@ -67,64 +66,50 @@
             <form class="form-data" id="form-data" novalidate>
                 <div class="modal-body">
                         <div class="modal-body">
-                            <div class="md-form mb-3">
-                                <label><b>Misión:</b></label>
-                                <textarea  type="text" class="form-control"  rows="4" id="mision" name="mision" placeholder="Misión" required></textarea>  
-                                <div class="invalid-feedback">
-                                    Dato necesario.
+                        <div class="md-form mb-3" id="select_client"></div>
+                        <div class="md-form mb-3" id="select_routine"></div>
+                        <div class="md-form mb-3">
+                            <label for="expiration-date">Fecha Inicio:</label>
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control datetimepicker-input" data-target="#datetimepicker1" required />
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="icon-calendar"></i></div>
                                 </div>
                             </div>
-                            <div class="md-form mb-3">
-                                    <label><b>Visión:</b></label>
-                                    <textarea  type="text" class="form-control"  rows="4" id="vision" name="vision" placeholder="Visión" required></textarea>  
-                                    <div class="invalid-feedback">
-                                        Dato necesario.
-                                    </div>
-                                </div>
-                            <div class="md-form mb-3">
-                                <label><b>Dirección:</b></label>
-                                <input type="text" class="form-control"  id="direccion" name="direccion" placeholder="Dirección"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Dato necesario.
-                                </div>
-                            </div> 
-                            <div class="md-form mb-3">
-                                <label><b>Teléfono:</b></label>
-                                <input type="text" class="form-control"  id="telefono" name="telefono" placeholder="Teléfono"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Dato necesario.
-                                </div>
-                            </div> 
-                            <div class="md-form mb-3">
-                                <label><b>Web:</b></label>
-                                <input type="text" class="form-control"  id="web" name="web" placeholder="Web"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Dato necesario.
+                        </div>
+
+                        <div class="md-form mb-3">
+                            <label for="entry-date">Fecha Fin:</label>
+                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                <input type="text" id="fecha_fin" name="fecha_fin" class="form-control datetimepicker-input" data-target="#datetimepicker2" required />
+                                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="icon-calendar"></i></div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="md-form mb-3">
+                            <label for="entry-date">Hora de Alarma:</label>
+                            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                <input type="text" id="hora_alarma" name="hora_alarma" class="form-control datetimepicker-input" data-target="#datetimepicker2" required />
+                                <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="icon-clock"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
                             <div class="md-form mb-3">
-                                <label><b>Correo Electrónico:</b></label>
-                                <input tyoe="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico"
-                                    required>
+                                <label><b>Mensaje de alarma:</b></label>
+                                <input  type="text" class="form-control" rows="4" id="mensaje" name="mensaje" placeholder="Mensaje de alarma" 
+                                required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
-                            </div> 
-                            <div class="md-form mb-3">
-                                <label><b>Contácto:</b></label>
-                                <input type="text" class="form-control"  id="contacto" name="contacto" placeholder="Contácto"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Dato necesario.
-                                </div>
-                            </div>                                                                                     
+                            </div>                                                                                
                             <div class="md-form mb-3">
                                     <label for="estado"><b>Estado:</b></label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="estado_activo" name="estado" class="custom-control-input bg-success"
+                                    <input type="radio" id="estado_activo" name="estado" class="custom-control-input bg-danger"
                                         value="ACTIVO" checked>
                                     <label class="custom-control-label" for="estado_activo">Activo</label>
                                 </div>
@@ -173,5 +158,5 @@
 <script>
     var user_id={{ Auth::user()->id }};
 </script>
-<script src="{{ URL::asset('js/scripts/institucional.js') }}"></script>
+<script src="{{ URL::asset('js/scripts/plan.js') }}"></script>
 @endsection

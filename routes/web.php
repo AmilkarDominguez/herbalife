@@ -22,7 +22,7 @@ Auth::routes();
 ///USERS///////
 
 Route::get('/users', 'UserController@user')->name('user')->middleware('auth');
-Route::resource('user', 'UserController')->except(['create','show']);
+Route::resource('user', 'UserController')->except(['create', 'show']);
 Route::get('listuser', 'UserController@list')->name('listuser')->middleware('auth');
 
 //HOME
@@ -39,9 +39,18 @@ Route::resource('productos', 'ProductoController')->middleware('auth');
 Route::get('producto_dt', 'ProductoController@data_table')->middleware('auth');
 Route::get('list_types', 'ProductoController@list')->middleware('auth');
 
+
 Route::resource('rutinas', 'RutinaController')->middleware('auth');
 Route::get('rutina_dt', 'RutinaController@data_table')->middleware('auth');
+Route::get('crear_rutina', 'RutinaController@create_routine')->name('crear_rutina')->middleware('auth');
+Route::get('dt_products', 'RutinaController@dt_products')->name('dt_products')->middleware('auth');
+Route::post('save_detail', 'RutinaController@save_detail')->name('save_detail')->middleware('auth');
+Route::get('dt_details', 'RutinaController@dt_details')->name('dt_details')->middleware('auth');
 
+Route::resource('planes', 'PlanController')->middleware('auth');
+Route::get('planes_dt', 'PlanController@data_table')->middleware('auth');
+Route::get('list_clients', 'PlanController@list_clients')->middleware('auth');
+Route::get('list_routines', 'PlanController@list_routines')->middleware('auth');
 
 Route::get('screem_institucional', 'APPController@institucional')->name('screem_institucional');
 Route::get('screem_productos', 'APPController@productos')->name('screem_productos');

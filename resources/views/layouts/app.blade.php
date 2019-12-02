@@ -72,7 +72,9 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownReportes">
                                     <a class="dropdown-item" href="{{ route('client.index') }}">Clientes</a>
-                                    <a class="dropdown-item" href="{{ route('rutinas.index') }}">Planes</a>
+                                    <a class="dropdown-item" href="{{ route('crear_rutina') }}">Crear plan</a>
+                                    <a class="dropdown-item" href="{{ route('rutinas.index') }}">Administrar planes</a>
+                                    <a class="dropdown-item" href="{{ route('planes.index') }}">Asignar plan a cliente</a>
                                     <a class="dropdown-item" href="{{ route('tipos.index') }}">Ejecuciones</a>
                                 </div>
                             </li>
@@ -104,6 +106,9 @@
             @yield('content')
         </main>
     </div>
+
+
+
     <script src="{{ asset('js/assets/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('js/assets/popper.min.js') }}"></script>
     <script src="{{ asset('js/assets/bootstrap.min.js') }}"></script>

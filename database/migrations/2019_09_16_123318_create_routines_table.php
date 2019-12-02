@@ -17,9 +17,8 @@ class CreateRoutinesTable extends Migration
             $table->bigIncrements('id');
             //Custom
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();//Usuario
-            $table->text('nombre_rutina')->nullable();
+            $table->text('nombre')->nullable();
             $table->date('fecha')->nullable();
-            // $table->text('foto')->nullable();
             $table->enum('estado', ['ACTIVO', 'INACTIVO','ELIMINADO'])->default('ACTIVO');
             //RELATIONS
             $table->foreign('user_id')->references('id')->on('users')

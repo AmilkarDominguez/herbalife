@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoutineRequest extends FormRequest
+class PlanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class RoutineRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'            => 'required|integer',
-            'nombre'      => 'required|string|max:255|unique:routines',
-            'estado'             => 'required|string|max:255',
-        ];
+            'user_id'                   => 'required|integer',
+            'client_id'                   => 'required|integer',
+            'routine_id'                   => 'required|integer',
+            'estado'                    => 'required|string|max:255',    
+            ];
     }
 }

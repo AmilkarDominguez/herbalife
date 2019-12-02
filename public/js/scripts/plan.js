@@ -1,7 +1,7 @@
 var table;
 var id=0;
 
-var title_modal_data = " Agregar Tipo";
+var title_modal_data = " Agregar plan";
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
@@ -11,6 +11,9 @@ $(document).ready(function(){
     //ListDatatable();
     catch_parameters();
     ListDatatable();
+    SelectClients();
+    SelectRoutines();
+    DatePicker();
 });
 
 // datatable catalogos
@@ -26,12 +29,28 @@ function ListDatatable()
             "url": "/js/assets/Spanish.json"
         },
         ajax: {
-            url: 'tipo_dt'
-            
+            url: 'planes_dt'            
         },
         columns: [
             { data: 'user.name'},
-            { data: 'nombre'},
+            { data: 'client.codigo'},
+            { data: 'fecha_inicio'},
+            { data: 'fecha_fin'},
+            { data: 'hora_alarma'},
+            { data: 'mensaje'},
+            { data: 'verificado',
+            "render": function (data, type, row) {
+                    if (row.estado === 'REALIZADO') {
+                        return '<center><p class="bg-success text-white"><b>REALIZADO</b></p></center>';
+                    }
+                    else if (row.estado === 'PENDIENTE') {          
+                        return '<center><p class="bg-warning text-white"><b>PENDIENTE</b></p></center>';
+                    }
+                    else if (row.estado === 'VENCIDO') {          
+                        return '<center><p class="bg-danger text-white"><b>VENCIDO</b></p></center>';
+                    }
+                }
+            },
             { data: 'estado',
             "render": function (data, type, row) {
                     if (row.estado === 'ACTIVO') {
@@ -97,7 +116,7 @@ function ListDatatable()
 // guarda los datos nuevos
 function Save() {
     $.ajax({
-        url: "tipos",
+        url: "planes",
         method: 'post',
         data: catch_parameters(),
         success: function (result) {
@@ -119,7 +138,7 @@ function Save() {
 // captura los datos
 function Edit(id) {
     $.ajax({
-        url: "tipos/{tipo}/edit",
+        url: "planes/{plane}/edit",
         method: 'get',
         data: {
             id: id
@@ -141,7 +160,13 @@ function show_data(obj) {
     ClearInputs();
     obj = JSON.parse(obj);
     id= obj.id;
-    $("#nombre").val(obj.nombre);
+    $("user_id").val(obj.user_id);
+    $("client_id").val(obj.client_id);
+    $("routine_id").val(obj.routine_id);
+    $("fecha_inicio").val(obj.fecha_inicio);
+    $("fecha_fin").val(obj.fecha_fin);
+    $("hora_alarma").val(obj.hora_alarma);
+    $("mensaje").val(obj.mensaje);
     if (obj.estado == "ACTIVO") {
         $('#estado_activo').prop('checked', true);
     }
@@ -160,7 +185,7 @@ function Update() {
     var data_new = $(".form-data").serialize();
     if (data_old != data_new) {
         $.ajax({
-            url: "tipos/{tipo}",
+            url: "planes/{plane}",
             method: 'put',
             data: catch_parameters(),
             success: function (result) {
@@ -189,7 +214,7 @@ function Delete(id_) {
 }
 $("#btn_delete").click(function () {
     $.ajax({
-        url: "tipos/{tipo}",
+        url: "planes/{plane}",
         method: 'delete',
         data: {
             id: id
@@ -283,3 +308,80 @@ function ClearInputs() {
     $("#form-data")[0].reset();
     id=0;
 };
+
+function SelectClients() {
+    $.ajax({
+        url: "list_clients",
+        method: 'get',
+        success: function (result) {
+            var code = '<div class="form-group">';
+            code += '<label><b>Clientes:</b></label>';
+            code += '<select class="form-control" name="client_id" id="client_id" required>';
+            code += '<option disabled value="" selected>(Seleccionar)</option>';
+            $.each(result, function (key, value) {
+                code += '<option value="' + value.id + '">' + value.codigo + ' ' + value.name + '</option>';
+            });
+            code += '</select>';
+            code += '<div class="invalid-feedback">';
+            code += 'Dato necesario.';
+            code += '</div>';
+            code += '</div>';
+            $("#select_client").html(code);
+        },
+        error: function (result) {
+           
+            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
+            console.log(result);
+        },
+
+    });
+}
+
+function SelectRoutines() {
+    $.ajax({
+        url: "list_routines",
+        method: 'get',
+        success: function (result) {
+            var code = '<div class="form-group">';
+            code += '<label><b>Planes disponibles:</b></label>';
+            code += '<select class="form-control" name="routine_id" id="routine_id" required>';
+            code += '<option disabled value="" selected>(Seleccionar)</option>';
+            $.each(result, function (key, value) {
+                code += '<option value="' + value.id + '">' + value.nombre + '</option>';
+            });
+            code += '</select>';
+            code += '<div class="invalid-feedback">';
+            code += 'Dato necesario.';
+            code += '</div>';
+            code += '</div>';
+            $("#select_routine").html(code);
+        },
+        error: function (result) {
+           
+            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
+            console.log(result);
+        },
+
+    });
+}
+
+//fecha de entrada
+function DatePicker() {
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    $('#datetimepicker2').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+    $("#datetimepicker1").on("change.datetimepicker", function (e) {
+        $('#datetimepicker2').datetimepicker('minDate', e.date);
+    });
+    $("#datetimepicker2").on("change.datetimepicker", function (e) {
+        $('#datetimepicker1').datetimepicker('maxDate', e.date);
+    });
+
+    $('#datetimepicker3').datetimepicker({
+        format: 'LT'
+    });
+}

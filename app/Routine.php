@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Routine extends Model
 {
-    protected $fillable =[
+    protected $fillable = [
         'user_id',
-        'nombre_rutina',
+        'nombre',
         'fecha',
-        'foto',
         'estado'
     ];
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function details()
+    {
+        return $this->hasMany(Detail::class);
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Caffeinated\Shinobi\Models\Role;
-use Caffeinated\Shinobi\Models\Permission;
 
 class InstitutionalTableSeeder extends Seeder
 {

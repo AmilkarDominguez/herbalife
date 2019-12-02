@@ -17,17 +17,16 @@ class CreateEjecutionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             //Custom
-            $table->unsignedBigInteger('detail_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('user_id')->unsigned()->nullable();//Usuario
-            $table->text('dosis')->nullable();
+            $table->unsignedBigInteger('plan_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('client_id')->unsigned()->nullable();//Usuario
             $table->date('fecha')->nullable();
-            $table->enum('verificado', ['OK', 'PENDIENTE','PROCESO'])->default('PENDIENTE');
+            $table->enum('verificado', ['REALIZADO', 'PENDIENTE','VENCIDO'])->default('PENDIENTE');
             $table->enum('estado', ['ACTIVO', 'INACTIVO','ELIMINADO'])->default('ACTIVO');
             //RELATIONS
-            $table->foreign('detail_id')->references('id')->on('details')
+            $table->foreign('plan_id')->references('id')->on('plans')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('client_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

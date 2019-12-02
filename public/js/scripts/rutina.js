@@ -32,9 +32,8 @@ function ListDatatable()
         },
         columns: [
             { data: 'user.name'},
-            { data: 'nombre_rutina'},
-            { data: 'fecha'},
-            { data: 'Imagen',   orderable: false, searchable: false },
+            { data: 'nombre'},
+            { data: 'fecha'},            
             { data: 'estado',
             "render": function (data, type, row) {
                     if (row.estado === 'ACTIVO') {
@@ -48,6 +47,7 @@ function ListDatatable()
                     }
                 }
             },
+            { data: 'Detalles',   orderable: false, searchable: false },
             { data: 'Editar',   orderable: false, searchable: false },
             { data: 'Eliminar',   orderable: false, searchable: false },
         ],
@@ -145,10 +145,7 @@ function show_data(obj) {
     ClearInputs();
     obj = JSON.parse(obj);
     id= obj.id;
-    $("#nombre_rutina").val(obj.nombre_rutina);
-    $("#fecha").val(obj.fecha);
-    $('#image').attr('src', obj.foto);
-    $('#label_image').html(obj.foto);
+    $("#nombre").val(obj.nombre);
     if (obj.estado == "ACTIVO") {
         $('#estado_activo').prop('checked', true);
     }
@@ -219,7 +216,33 @@ $("#btn_delete").click(function () {
 });
 
 
-
+function Details(id){
+    $('#table_details').DataTable().clear();
+    $('#table_details').DataTable().destroy();
+    $tableDetails = $('#table_details').DataTable({
+        dom: 'lrtip',
+        processing: true,
+        serverSide: true,
+        "paging": true,
+        language: {
+            "url": "/js/assets/Spanish.json"
+        },
+        ajax: {
+            url: 'dt_details',
+            data: function (obj) {
+                obj.id = id;
+            }
+        },
+        columns: [
+            { data: 'Imagen',   orderable: false, searchable: false },
+            { data: 'product.nombre'},
+            { data: 'dosis'},
+            
+        ]
+    });
+    $("#modal_details").modal("show");
+    
+}
 
 
 
@@ -317,3 +340,5 @@ function dateEntry() {
         format: 'YYYY-MM-DD'
     });
 }
+
+

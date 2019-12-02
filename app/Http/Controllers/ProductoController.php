@@ -31,7 +31,7 @@ class ProductoController extends Controller
             //IMAGE 
             if($request->image&&$request->extension_image){
                 $image = $request->image;
-                $this->SaveFile($Product,$request->image, $request->extension_image, '/images/Producto/');
+                $this->SaveFile($Product,$request->image, $request->extension_image, '/images/Productos/');
             }
 
             return response()->json(['success'=>true,'msg'=>'Registro existoso.']);

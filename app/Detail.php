@@ -10,18 +10,10 @@ class Detail extends Model
         'routine_id',
         'product_id',
         'user_id',
-        'client_id',
         'dosis',
-        'fecha_inicio',
-        'fecha_fin',
-        'alarma',
         'estado'
     ];
     public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function client()
     {
         return $this->belongsTo(User::class);
     }
