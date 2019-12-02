@@ -46,4 +46,5 @@ Route::get('rutina_dt', 'RutinaController@data_table')->middleware('auth');
 Route::get('screem_institucional', 'APPController@institucional')->name('screem_institucional');
 Route::get('screem_productos', 'APPController@productos')->name('screem_productos');
 
-
+Route::resource('client', 'ClientController')->middleware('auth');
+Route::get('client_dt', 'ClientController@data_table')->middleware('auth');

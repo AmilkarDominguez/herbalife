@@ -51,18 +51,9 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReportes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-docs"></i>Contenido
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownReportes">
-                                    <a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a>
-                                    <a class="dropdown-item" href="{{ route('rutinas.index') }}">Rutinas</a>
-                                    <a class="dropdown-item" href="{{ route('tipos.index') }}">Planes</a>
-                                    <a class="dropdown-item" href="{{ route('tipos.index') }}">Ejecuciones</a>
-                                </div>
-                            </li>
-                           
+
+
+                        @if(Auth::user()->hasRole('ADMINISTRADOR'))
                             <li class="nav-item dropdown">                               
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdministracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="icon-sliders"></i>Configuración
@@ -70,9 +61,22 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownAdministracion">
                                     <a class="dropdown-item" href="{{ route('institutional.index') }}">Institucional</a>
                                     <a class="dropdown-item" href="{{ route('tipos.index') }}">Tipos de productos</a>
+                                    <a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a>
                                 </div>
                             </li>
-                           
+                        @endif
+                        @if(Auth::user()->hasRole('ADMINISTRADOR') || Auth::user()->hasRole('ASESOR'))
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownReportes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon-docs"></i>Asesoria
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownReportes">
+                                    <a class="dropdown-item" href="{{ route('client.index') }}">Clientes</a>
+                                    <a class="dropdown-item" href="{{ route('rutinas.index') }}">Planes</a>
+                                    <a class="dropdown-item" href="{{ route('tipos.index') }}">Ejecuciones</a>
+                                </div>
+                            </li>
+                        @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

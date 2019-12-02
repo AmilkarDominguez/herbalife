@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 class="card-title text-primary">Targeta de Operaciones</h2>
+                        <h2 class="card-title text-primary">Clientes</h2>
                     </div>
                     
                     <div class="col-sm-6 d-flex justify-content-end">
@@ -31,15 +31,15 @@
                     <table id="table" class="table table-striped ">
                         <thead>
                             <tr>
-                                <td>Registrado por</td>
-                                <td>Nit</td>
-                                <td>Empresa</td>
-                                <td>Descripcion</td>
-                                <td>Fecha Registro</td>
-                                <td>Fecha Vigencia</td>
-                                <td>Responsable</td>
-                                <td>Telefono</td>
-                                <td>Email</td>
+                                <td>Foto</td>
+                                <td>Nombre completo</td>
+                                <td>Código</td>                                
+                                <td>Dirección</td>
+                                <td>Correo</td>
+                                <td>Estatura</td>
+                                <td>Peso</td>
+                                <td>Fecha Nacimiento</td>
+                                <td>Género</td>
                                 <td>Estado</td>
                                 <td>Editar</td>
                                 <td>Eliminar</td>
@@ -69,81 +69,89 @@
                 <div class="modal-body">
                         <div class="modal-body">
                             <div class="md-form mb-3">
-                                <label><b>Nit:</b></label>
-                                <input  type="text" class="form-control" onkeyup="Mayus(this);" rows="4" id="nit" name="nit" placeholder="Nit" 
-                                required> 
+                                <label><b>Foto:</b></label>
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <img src="" id="image" alt="logo" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" id="foto" name="foto" lang="es" accept=".png, .jpg, .gif">
+                                            <label id="label_image" name="label_image" class="custom-file-label rounded">Elegir archivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="md-form mb-3">
+                                <label><b>Nombre completo:</b></label>
+                                <input  type="text" class="form-control"  rows="4" id="name" name="name" placeholder="Nombre completo" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
                             </div>
                             <div class="md-form mb-3">
-                                <label><b>Empresa:</b></label>
-                                <input  type="text" class="form-control" onkeyup="Mayus(this);" rows="4" id="empresa" name="empresa" placeholder="Empresa" 
-                                required> 
+                                <label><b>Contraseña:</b></label>
+                                <input  type="password" class="form-control"  rows="4" id="password" name="password" placeholder="Contraseña" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
                             </div>
                             <div class="md-form mb-3">
-                                <label><b>Descripción:</b></label>
-                                <textarea type="text" class="form-control" onkeyup="Mayus(this);" id="descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+                                <label><b>Correo:</b></label>
+                                <input  type="email" class="form-control"  rows="4" id="email" name="email" placeholder="Correo" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
                             </div>
                             <div class="md-form mb-3">
-                                <label for="expiration-date">Fecha de Registro:</label>
+                                <label><b>Dirección:</b></label>
+                                <input  type="text" class="form-control"  rows="4" id="direccion" name="direccion" placeholder="Dirección" required> 
+                                <div class="invalid-feedback">
+                                    Dato necesario.
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <label><b>Estatura (cm):</b></label>
+                                <input  type="number" class="form-control"  rows="4" id="estatura" name="estatura" placeholder="Estatura" required> 
+                                <div class="invalid-feedback">
+                                    Dato necesario.
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <label><b>Peso (Kl):</b></label>
+                                <input  type="number" class="form-control"  rows="4" id="peso" name="peso" placeholder="Peso" required> 
+                                <div class="invalid-feedback">
+                                    Dato necesario.
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <label for="expiration-date">Fecha de Nacimiento:</label>
                                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                    <input type="text" id="fecha_registro" name="fecha_registro" class="form-control datetimepicker-input" data-target="#datetimepicker1" required/>
+                                    <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control datetimepicker-input" data-target="#datetimepicker1" required/>
                                     <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="icon-calendar"></i></div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="md-form mb-3">
-                                <label for="entry-date">Fecha de Vigencia:</label>
-                                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                    <input type="text" id="fecha_vigencia" name="fecha_vigencia" class="form-control datetimepicker-input" data-target="#datetimepicker2" required/>
-                                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="icon-calendar"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="md-form mb-3">
-                                <label><b>Reponsable:</b></label>
-                                <input  type="text" class="form-control" onkeyup="Mayus(this);" rows="4" id="responsable" name="responsable" placeholder="Responsable" 
-                                required> 
-                                <div class="invalid-feedback">
-                                    Dato necesario.
-                                </div>
-                            </div>
-                            <div class="md-form mb-3">
-                                <label><b>Telefono:</b></label>
-                                <input  type="text" class="form-control" onkeyup="Mayus(this);" rows="4" id="telefono" name="telefono" placeholder="Telefono" 
-                                required> 
-                                <div class="invalid-feedback">
-                                    Dato necesario.
-                                </div>
-                            </div> 
-                            <div class="md-form mb-3">
-                                <label><b>Email:</b></label>
-                                <input  type="text" class="form-control" onkeyup="Mayus(this);" rows="4" id="email" name="email" placeholder="Email" 
-                                required> 
+                                <label><b>Género:</b></label>
+                                <select class="form-control" name="sexo" id="sexo" required>
+                                    <option selected="MUJER">MUJER</option>
+                                    <option value="HOMBRE">HOMBRE</option>
+                                </select>
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
                             </div>                                                                              
                             <div class="md-form mb-3">
-                                    <label for="estado"><b>Estado:</b></label>
+                                    <label for="state"><b>Estado:</b></label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="estado_activo" name="estado" class="custom-control-input bg-danger"
+                                    <input type="radio" id="estado_activo" name="state" class="custom-control-input bg-danger"
                                         value="ACTIVO" checked>
                                     <label class="custom-control-label" for="estado_activo">Activo</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="estado_inactivo" name="estado" class="custom-control-input"
+                                    <input type="radio" id="estado_inactivo" name="state" class="custom-control-input"
                                         value="INACTIVO">
                                     <label class="custom-control-label" for="estado_inactivo">Inactivo</label>
                                 </div>
@@ -187,5 +195,5 @@
 <script>
     var user_id={{ Auth::user()->id }};
 </script>
-<script src="{{ URL::asset('js/scripts/operation_card.js') }}"></script>
+<script src="{{ URL::asset('js/scripts/cliente.js') }}"></script>
 @endsection

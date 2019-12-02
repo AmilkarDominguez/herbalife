@@ -20,7 +20,7 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
-     */
+    */
     public function index()
     {
         $User = auth()->user();
@@ -29,8 +29,6 @@ class HomeController extends Controller
         }else{
             auth()->logout();
             return view('inactive');
-        }
-
-        
+        }        
     }
 }

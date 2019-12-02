@@ -22,6 +22,15 @@ class CreateUsersTable extends Migration
             $table->enum('state', ['ACTIVO', 'INACTIVO','ELIMINADO'])->default('ACTIVO');
             $table->rememberToken();
             $table->timestamps();
+            //Custom
+            $table->enum('state_rol', ['ADMINISTRADOR', 'ASESOR','CLIENTE'])->default('CLIENTE');
+            $table->text('foto')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->text('sexo')->nullable();
+            $table->text('estatura')->nullable();
+            $table->text('peso')->nullable();
+            $table->text('direccion')->nullable();
+            $table->text('codigo')->nullable();
         });
     }
 
