@@ -62,17 +62,12 @@ class PlanController extends Controller
     }
      public function data_table()
      {
-         //$isUser = auth()->user()->can(['provider.edit', 'provider.destroy']);
-         //Variable para la visiblidad
-         $visibility = "";
-         //if (!$isUser) {$visibility="disabled";}
              return datatables()->of(Plan::where('estado','!=','ELIMINADO')->with('user','client')->get())
-             ->addColumn('Editar', function ($item) use ($visibility) {
-                 $item->v=$visibility;
-             return '<a class="btn btn-xs btn-primary text-white '.$item->v.'" onclick="Edit('.$item->id.')" ><i class="icon-pencil"></i></a>';
+             ->addColumn('Editar', function ($item) {
+             return '<a class="btn btn-xs btn-primary text-white onclick="Edit('.$item->id.')" ><i class="icon-pencil"></i></a>';
              })
              ->addColumn('Eliminar', function ($item) {
-                 return '<a class="btn btn-xs btn-danger text-white '.$item->v.'" onclick="Delete(\''.$item->id.'\')"><i class="icon-trash"></i></a>';
+                 return '<a class="btn btn-xs btn-danger text-white onclick="Delete(\''.$item->id.'\')"><i class="icon-trash"></i></a>';
                  })
              ->rawColumns(['Editar','Eliminar'])    
              ->toJson();   

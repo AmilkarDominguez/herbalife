@@ -38,16 +38,17 @@ function ListDatatable()
             { data: 'fecha_fin'},
             { data: 'hora_alarma'},
             { data: 'mensaje'},
+            // { data: 'verificado'},
             { data: 'verificado',
             "render": function (data, type, row) {
-                    if (row.estado === 'REALIZADO') {
-                        return '<center><p class="bg-success text-white"><b>REALIZADO</b></p></center>';
+                    if (row.verificado === 'REALIZADO') {
+                        return '<center><p class="border border-success text-success"><b>REALIZADO</b></p></center>';
                     }
-                    else if (row.estado === 'PENDIENTE') {          
-                        return '<center><p class="bg-warning text-white"><b>PENDIENTE</b></p></center>';
+                    else if (row.verificado === 'PENDIENTE') {          
+                        return '<center><p class="border border-warning text-warning"><b>PENDIENTE</b></p></center>';
                     }
-                    else if (row.estado === 'VENCIDO') {          
-                        return '<center><p class="bg-danger text-white"><b>VENCIDO</b></p></center>';
+                    else if (row.verificado === 'VENCIDO') {          
+                        return '<center><p class="border border-danger text-danger"><b>VENCIDO</b></p></center>';
                     }
                 }
             },
