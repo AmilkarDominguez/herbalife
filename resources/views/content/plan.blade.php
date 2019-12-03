@@ -39,8 +39,8 @@
                                 <td>Mensaje alarma</td>
                                 <td>Verificación</td>
                                 <td>Estado</td>
-                                <td>Editar</td>
-                                <td>Eliminar</td>
+                                <!-- <td>Editar</td>
+                                <td>Eliminar</td> -->
                             </tr>
                         </thead>
                     </table>

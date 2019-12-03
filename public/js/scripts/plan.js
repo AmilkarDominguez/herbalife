@@ -65,8 +65,8 @@ function ListDatatable()
                     }
                 }
             },
-            { data: 'Editar',   orderable: false, searchable: false },
-            { data: 'Eliminar', orderable: false, searchable: false },
+            // { data: 'Editar',   orderable: false, searchable: false },
+            // { data: 'Eliminar', orderable: false, searchable: false },
         ],
         buttons: [
             {
@@ -138,22 +138,23 @@ function Save() {
 
 // captura los datos
 function Edit(id) {
-    $.ajax({
-        url: "planes/{plane}/edit",
-        method: 'get',
-        data: {
-            id: id
-        },
-        success: function (result) {
-            show_data(result);
-        },
-        error: function (result) {
-            toastr.error(result + ' CONTACTE A SU PROVEEDOR POR FAVOR.');
+    console.log(id);
+    // $.ajax({
+    //     url: "planes/{plane}/edit",
+    //     method: 'get',
+    //     data: {
+    //         id: id
+    //     },
+    //     success: function (result) {
+    //         show_data(result);
+    //     },
+    //     error: function (result) {
+    //         toastr.error(result + ' CONTACTE A SU PROVEEDOR POR FAVOR.');
 
-            console.log(result);
-        },
+    //         console.log(result);
+    //     },
 
-    });
+    // });
 };
 /// muestra la vista con los datos capturados
 var data_old;
