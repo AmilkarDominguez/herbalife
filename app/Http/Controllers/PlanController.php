@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Routine;
 use App\Plan;
+use App\Ejecution;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\PlanRequest;
 use Validator;
@@ -28,9 +29,21 @@ class PlanController extends Controller
             return response()->json(['success'=>false,'msg'=>$validator->errors()->all()]);
         } 
         else{
-            Plan::create($request->all());
-            return response()->json(['success'=>true,'msg'=>'Registro existoso.']);
+            $Plan = Plan::create($request->all());
+            return response()->json([
+                'success'=>true,
+                'msg'=>'Registro existoso.',
+                'plan_id'=>$Plan->id,
+                'client_id'=>$Plan->client_id,
+                'fecha_inicio'=>$Plan->fecha_inicio,
+                'fecha_fin'=>$Plan->fecha_fin,
+             ]);
         }
+    }
+    public function save_ejecutions(Request $request)
+    {
+        Ejecution::create($request->all());
+        return response()->json(['success'=>true,'msg'=>'Ejecuciones guardadas.']);
     }
     public function edit(Request $request)
     {
@@ -52,7 +65,7 @@ class PlanController extends Controller
             return response()->json(['success'=>true,'msg'=>'Se actualizo existosamente.']);
         }
     }
-
+    
     public function destroy(Request $request)
     {
         $Plan = Plan::find($request->id);

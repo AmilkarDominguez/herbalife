@@ -52,6 +52,9 @@ Route::get('planes_dt', 'PlanController@data_table')->middleware('auth');
 Route::get('list_clients', 'PlanController@list_clients')->middleware('auth');
 Route::get('list_routines', 'PlanController@list_routines')->middleware('auth');
 
+Route::post('save_ejecutions', 'PlanController@save_ejecutions')->middleware('auth');
+
+
 Route::get('screem_institucional', 'APPController@institucional')->name('screem_institucional');
 Route::get('screem_productos', 'APPController@productos')->name('screem_productos');
 

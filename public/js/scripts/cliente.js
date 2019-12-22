@@ -252,7 +252,7 @@ function catch_parameters()
     data += "&id="+id;
     data += "&extension_image=" + extension_image;
     data +="&image=" + reader.result;
-    console.log(data);
+    // console.log(data);
     return data;
     
 }

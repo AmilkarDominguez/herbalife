@@ -1,8 +1,8 @@
 var table;
-var id=0;
+var id = 0;
 
 var title_modal_data = " Agregar plan";
-$(document).ready(function(){
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -17,8 +17,7 @@ $(document).ready(function(){
 });
 
 // datatable catalogos
-function ListDatatable()
-{
+function ListDatatable() {
     table = $('#table').DataTable({
         //dom: 'lfBrtip',
         dom: 'lfrtip',
@@ -29,38 +28,47 @@ function ListDatatable()
             "url": "/js/assets/Spanish.json"
         },
         ajax: {
-            url: 'planes_dt'            
+            url: 'planes_dt'
         },
-        columns: [
-            { data: 'user.name'},
-            { data: 'client.codigo'},
-            { data: 'fecha_inicio'},
-            { data: 'fecha_fin'},
-            { data: 'hora_alarma'},
-            { data: 'mensaje'},
+        columns: [{
+                data: 'user.name'
+            },
+            {
+                data: 'client.codigo'
+            },
+            {
+                data: 'fecha_inicio'
+            },
+            {
+                data: 'fecha_fin'
+            },
+            {
+                data: 'hora_alarma'
+            },
+            {
+                data: 'mensaje'
+            },
             // { data: 'verificado'},
-            { data: 'verificado',
-            "render": function (data, type, row) {
+            {
+                data: 'verificado',
+                "render": function (data, type, row) {
                     if (row.verificado === 'REALIZADO') {
                         return '<center><p class="border border-success text-success"><b>REALIZADO</b></p></center>';
-                    }
-                    else if (row.verificado === 'PENDIENTE') {          
+                    } else if (row.verificado === 'PENDIENTE') {
                         return '<center><p class="border border-warning text-warning"><b>PENDIENTE</b></p></center>';
-                    }
-                    else if (row.verificado === 'VENCIDO') {          
+                    } else if (row.verificado === 'VENCIDO') {
                         return '<center><p class="border border-danger text-danger"><b>VENCIDO</b></p></center>';
                     }
                 }
             },
-            { data: 'estado',
-            "render": function (data, type, row) {
+            {
+                data: 'estado',
+                "render": function (data, type, row) {
                     if (row.estado === 'ACTIVO') {
                         return '<center><p class="bg-success text-white"><b>ACTIVO</b></p></center>';
-                    }
-                    else if (row.estado === 'INACTIVO') {          
+                    } else if (row.estado === 'INACTIVO') {
                         return '<center><p class="bg-warning text-white"><b>INACTIVO</b></p></center>';
-                    }
-                    else if (row.estado === 'ELIMINADO') {          
+                    } else if (row.estado === 'ELIMINADO') {
                         return '<center><p class="bg-danger text-white"><b>ELIMINADO</b></p></center>';
                     }
                 }
@@ -68,8 +76,7 @@ function ListDatatable()
             // { data: 'Editar',   orderable: false, searchable: false },
             // { data: 'Eliminar', orderable: false, searchable: false },
         ],
-        buttons: [
-            {
+        buttons: [{
                 text: '<i class="icon-eye"></i> ',
                 className: 'rounded btn-dark m-2',
                 titleAttr: 'Columnas',
@@ -123,6 +130,8 @@ function Save() {
         success: function (result) {
             if (result.success) {
                 toastr.success(result.msg);
+                console.log(result.plan_id);
+                save_ejecutions(result.plan_id,result.client_id, result.fecha_inicio, result.fecha_fin);
 
             } else {
                 toastr.warning(result.msg);
@@ -158,10 +167,11 @@ function Edit(id) {
 };
 /// muestra la vista con los datos capturados
 var data_old;
+
 function show_data(obj) {
     ClearInputs();
     obj = JSON.parse(obj);
-    id= obj.id;
+    id = obj.id;
     $("user_id").val(obj.user_id);
     $("client_id").val(obj.client_id);
     $("routine_id").val(obj.routine_id);
@@ -193,7 +203,7 @@ function Update() {
             success: function (result) {
                 if (result.success) {
                     toastr.success(result.msg);
-    
+
                 } else {
                     toastr.warning(result.msg);
                 }
@@ -204,14 +214,14 @@ function Update() {
             },
         });
         table.ajax.reload();
-        
+
     }
 }
 
 
 //funcion para eliminar valor seleccionado
 function Delete(id_) {
-    id= id_;
+    id = id_;
     $('#modal_eliminar').modal('show');
 }
 $("#btn_delete").click(function () {
@@ -229,7 +239,7 @@ $("#btn_delete").click(function () {
             }
         },
         error: function (result) {
-            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
+            toastr.error(result.msg + ' CONTACTE A SU PROVEEDOR POR FAVOR.');
             console.log(result);
         },
 
@@ -255,14 +265,13 @@ function Mayus(e) {
 }
 
 // obtiene los datos del formulario
-function catch_parameters()
-{
+function catch_parameters() {
     var data = $(".form-data").serialize();
-    data += "&user_id="+user_id;
-    data += "&id="+id;
+    data += "&user_id=" + user_id;
+    data += "&id=" + id;
     //console.log(data);
     return data;
-    
+
 }
 
 // muestra el modal
@@ -308,7 +317,7 @@ function ClearInputs() {
     });
     //__Clean values of inputs
     $("#form-data")[0].reset();
-    id=0;
+    id = 0;
 };
 
 function SelectClients() {
@@ -331,8 +340,8 @@ function SelectClients() {
             $("#select_client").html(code);
         },
         error: function (result) {
-           
-            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
+
+            toastr.error(result.msg + ' CONTACTE A SU PROVEEDOR POR FAVOR.');
             console.log(result);
         },
 
@@ -359,8 +368,8 @@ function SelectRoutines() {
             $("#select_routine").html(code);
         },
         error: function (result) {
-           
-            toastr.error(result.msg +' CONTACTE A SU PROVEEDOR POR FAVOR.');
+
+            toastr.error(result.msg + ' CONTACTE A SU PROVEEDOR POR FAVOR.');
             console.log(result);
         },
 
@@ -389,12 +398,14 @@ function DatePicker() {
 }
 
 
-function Test(){
-    var startDate = new Date("2019-12-1"); //YYYY-MM-DD
-    var endDate = new Date("2019-12-31"); //YYYY-MM-DD
-
-    endDate.setDate(endDate.getDate() + 1);
-    var getDateArray = function(start, end) {
+function save_ejecutions(plan_id,client_id, start, end) {
+    console.log('llegando');
+    var startDate = new Date(start); //YYYY-MM-DD
+    var endDate = new Date(end); //YYYY-MM-DD
+    // console.log(start, end);
+    // console.log(startDate, endDate);
+    //endDate.setDate(endDate.getDate() + 1);
+    var getDateArray = function (start, end) {
         var arr = new Array();
         var dt = new Date(start);
         while (dt <= end) {
@@ -403,10 +414,40 @@ function Test(){
         }
         return arr;
     }
-    
+
     var dateArr = getDateArray(startDate, endDate);
     for (var i = 0; i < dateArr.length; i++) {
         // console.log(dateArr[i]);
-        console.log(dateArr[i].toISOString().slice(0,10));
+
+        console.log(dateArr[i].toISOString().slice(0, 10));
+
+        //Creando Ejecuciones
+
+        var data = {
+            'plan_id':plan_id,
+            'client_id':client_id,
+            'fecha':dateArr[i].toISOString().slice(0, 10),    
+            'verificado':'PENDIENTE',
+            'estado':'ACTIVO'
+
+        }; 
+
+        $.ajax({
+            url: "save_ejecutions",
+            method: 'post',
+            data: data,
+            success: function (result) {
+                if (result.success) {
+                    toastr.success(result.msg);
+                    console.log(result);
+                } else {
+                    toastr.warning(result.msg);
+                }
+            },
+            error: function (result) {
+                console.log(result.responseJSON.message);
+                toastr.error("CONTACTE A SU PROVEEDOR POR FAVOR.");
+            },
+        });
     }
 }

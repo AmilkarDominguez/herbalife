@@ -24,29 +24,26 @@ class ClientController extends Controller
         if ($validator->fails()) {
             return response()->json(['success' => false, 'msg' => $validator->errors()->all()]);
         } else {
-            $pass = $request->password;
-            $Client=User::create([
-                'email_verified_at' => now(),
-                'password' => Hash::make($pass),
-                'remember_token' => str_random(10),
+            //return response()->json(['success' => false, 'msg' => 'llegando!!']);
+
+            $Client = User::create([
                 'name' => $request->name,
-                'email' => $request->email,
+                'email'=> $request->email,
                 'state' => $request->state,
+                'state_rol' => 'CLIENTE',
+                'email_verified_at' => now(),
+                'password' => bcrypt($request->password),
                 'fecha_nacimiento' => $request->fecha_nacimiento,
-                'peso' => $request->peso,
-                'estatura' => $request->estatura,
                 'sexo' => $request->sexo,
-                'direccion' => $request->direccion
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'direccion' => $request->direccion,
+                'remember_token' => str_random(10)            
             ]);
 
-            // $Client=User::create($request->all());
             $Client->codigo= str_random(4).$Client->id;
-            // $Client->password = Hash::make($request->password);
-            $Client->update($request->all());
-
+            $Client->save();
             $Client->roles()->attach(Role::where('name', 'CLIENTE')->first());
-
-
              //IMAGE 
              if($request->image&&$request->extension_image){
                 $image = $request->image;
@@ -68,7 +65,20 @@ class ClientController extends Controller
             return response()->json(['success' => false, 'msg' => $validator->errors()->all()]);
         } else {
             $Client = User::find($request->id);
-            $Client->update($request->all());
+            $Client = User::update([
+                'name' => $request->name,
+                'email'=> $request->email,
+                'state' => $request->state,
+                'state_rol' => 'CLIENTE',
+                'password' => bcrypt($request->password),
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+                'sexo' => $request->sexo,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'direccion' => $request->direccion           
+            ]);
+
+            // $Client->update($request->all());
 
             if($request->image&&$request->extension_image){
                 //Delete File

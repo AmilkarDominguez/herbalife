@@ -40,8 +40,11 @@ Route::get('list_productos_JSON', 'API_ProductosController@list_JSON');
 //WEB APP
 Route::get('herbalife', 'APPController@institucional');
 
-
+//APIS PARA APP
 Route::get('productos', 'API\ProductsController@list')->name('productos');
+Route::get('info', 'API\InstitutionalController@list')->name('info');
+Route::get('planes', 'API\PlansController@list')->name('planes');
+Route::post('plans_by_client_id', 'API\PlansController@plans_by_client_id')->name('plans_by_client_id');
 
 ///API Authentication
 
