@@ -14,6 +14,9 @@
                         <button class="btn btn-outline-success" id="btn-agregar">
                             <i class="icon-plus"></i>&nbsp;Agregar
                         </button>
+                        <button class="btn btn-outline-primary" onclick="Test()">
+                            <i class="icon-plus"></i>&nbsp;Test
+                        </button>
                     </div>
                 </div>
                 <div class="row p-2">
