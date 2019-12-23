@@ -130,7 +130,7 @@ function Save() {
         success: function (result) {
             if (result.success) {
                 toastr.success(result.msg);
-                console.log(result.plan_id);
+                //console.log(result.plan_id);
                 save_ejecutions(result.plan_id,result.client_id, result.fecha_inicio, result.fecha_fin);
 
             } else {
@@ -438,8 +438,8 @@ function save_ejecutions(plan_id,client_id, start, end) {
             data: data,
             success: function (result) {
                 if (result.success) {
-                    toastr.success(result.msg);
-                    console.log(result);
+                    //toastr.success(result.msg);
+                    //console.log(result);
                 } else {
                     toastr.warning(result.msg);
                 }
