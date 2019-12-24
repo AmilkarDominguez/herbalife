@@ -45,6 +45,9 @@ Route::get('productos', 'API\ProductsController@list')->name('productos');
 Route::get('info', 'API\InstitutionalController@list')->name('info');
 Route::get('planes', 'API\PlansController@list')->name('planes');
 Route::post('plans_by_client_id', 'API\PlansController@plans_by_client_id')->name('plans_by_client_id');
+Route::get('ejecuciones', 'API\EjecutionsController@list')->name('ejecuciones');
+Route::post('ejecutions_by_client_id', 'API\EjecutionsController@ejecutions_by_client_id')->name('ejecutions_by_client_id');
+Route::post('ejecution_check', 'API\EjecutionsController@ejecution_check')->name('ejecution_check');
 
 ///API Authentication
 
