@@ -9,6 +9,8 @@ use App\Role;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientRequest;
+use App\Http\Requests\ClientUpdateRequest;
+
 use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
@@ -59,26 +61,15 @@ class ClientController extends Controller
     }
     public function update(Request $request)
     {
-        $rule = new ClientRequest();
+        $rule = new ClientUpdateRequest();
         $validator = Validator::make($request->all(), $rule->rules());
         if ($validator->fails()) {
             return response()->json(['success' => false, 'msg' => $validator->errors()->all()]);
         } else {
+            
             $Client = User::find($request->id);
-            $Client = User::update([
-                'name' => $request->name,
-                'email'=> $request->email,
-                'state' => $request->state,
-                'state_rol' => 'CLIENTE',
-                'password' => bcrypt($request->password),
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-                'sexo' => $request->sexo,
-                'estatura' => $request->estatura,
-                'peso' => $request->peso,
-                'direccion' => $request->direccion           
-            ]);
-
-            // $Client->update($request->all());
+            $request->password= bcrypt($request->password);
+            $Client->update($request->all());
 
             if($request->image&&$request->extension_image){
                 //Delete File

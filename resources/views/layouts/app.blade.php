@@ -75,7 +75,7 @@
                                     <a class="dropdown-item" href="{{ route('crear_rutina') }}">Crear plan</a>
                                     <a class="dropdown-item" href="{{ route('rutinas.index') }}">Administrar planes</a>
                                     <a class="dropdown-item" href="{{ route('planes.index') }}">Asignar plan a cliente</a>
-                                    <a class="dropdown-item" href="{{ route('tipos.index') }}">Ejecuciones</a>
+                                    <a class="dropdown-item" href="{{ route('ejecuciones.index') }}">Ejecuciones</a>
                                 </div>
                             </li>
                         @endif

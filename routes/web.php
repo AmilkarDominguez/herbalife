@@ -60,3 +60,6 @@ Route::get('screem_productos', 'APPController@productos')->name('screem_producto
 
 Route::resource('client', 'ClientController')->middleware('auth');
 Route::get('client_dt', 'ClientController@data_table')->middleware('auth');
+
+Route::resource('ejecuciones', 'EjecutionController')->middleware('auth');
+Route::get('list_ejecutions', 'EjecutionController@data_table')->middleware('auth')->name('list_ejecutions');;
