@@ -68,8 +68,24 @@ class ClientController extends Controller
         } else {
             
             $Client = User::find($request->id);
-            $request->password= bcrypt($request->password);
-            $Client->update($request->all());
+            // $request->password= bcrypt($request->password);
+            // $Client->update($request->all());
+
+
+
+            $Client->update([
+                'name' => $request->name,
+                'email'=> $request->email,
+                'state' => $request->state,
+                'state_rol' => 'CLIENTE',
+                'password' => bcrypt($request->password),
+                'fecha_nacimiento' => $request->fecha_nacimiento,
+                'sexo' => $request->sexo,
+                'estatura' => $request->estatura,
+                'peso' => $request->peso,
+                'direccion' => $request->direccion
+            ]);
+
 
             if($request->image&&$request->extension_image){
                 //Delete File
