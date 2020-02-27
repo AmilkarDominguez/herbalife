@@ -27,7 +27,6 @@ class ClientController extends Controller
             return response()->json(['success' => false, 'msg' => $validator->errors()->all()]);
         } else {
             //return response()->json(['success' => false, 'msg' => 'llegando!!']);
-
             $Client = User::create([
                 'name' => $request->name,
                 'email'=> $request->email,
@@ -135,7 +134,7 @@ class ClientController extends Controller
     public function destroy(Request $request)
     {
         $Client = User::find($request->id);
-        $Client->estado = "ELIMINADO";
+        $Client->state = "ELIMINADO";
         $Client->update();
         return response()->json(['success' => true, 'msg' => 'Registro borrado.']);
     }
