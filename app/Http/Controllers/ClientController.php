@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\User;
 use App\Role;
+use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientRequest;
@@ -23,6 +24,10 @@ class ClientController extends Controller
     {
         $rule = new ClientRequest();
         $validator = Validator::make($request->all(), $rule->rules());
+
+
+
+
         if ($validator->fails()) {
             return response()->json(['success' => false, 'msg' => $validator->errors()->all()]);
         } else {
@@ -45,6 +50,14 @@ class ClientController extends Controller
             $Client->codigo= str_random(4).$Client->id;
             $Client->save();
             $Client->roles()->attach(Role::where('name', 'CLIENTE')->first());
+
+            $tokenResult = $Client->createToken('Token de acceso personal');
+            $token = $tokenResult->token;
+            if ($request->remember_me)
+                $token->expires_at = Carbon::now()->addWeeks(1);
+            $token->save();
+            return response()->json(['success'=>true,'msg'=> $token]);
+
              //IMAGE 
              if($request->image&&$request->extension_image){
                 $image = $request->image;

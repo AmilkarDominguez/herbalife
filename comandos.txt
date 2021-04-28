@@ -1,0 +1,11 @@
+Si no funciona el sistema
+
+error de login
+php artisan passport:install --force
+
+php artisan serve
+
+abrir cmd en c:/xampp/htdocs/herbalife
+
+ngrok http 8000
+

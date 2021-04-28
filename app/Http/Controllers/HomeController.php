@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $User = auth()->user();
-        if ($User->state=="ACTIVO"){
+        if ($User->state=="ACTIVO" && $User->state_rol=="ADMINISTRADOR" ){
             return view('configuration.institutional');
         }else{
             auth()->logout();

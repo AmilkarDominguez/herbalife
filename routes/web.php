@@ -25,6 +25,12 @@ Route::get('/users', 'UserController@user')->name('user')->middleware('auth');
 Route::resource('user', 'UserController')->except(['create', 'show']);
 Route::get('listuser', 'UserController@list')->name('listuser')->middleware('auth');
 
+///USER ADMIN///
+Route::resource('users_admin', 'UserAdminController')->middleware('auth');
+Route::get('users_dt', 'UserAdminController@data_table')->middleware('auth');
+
+
+
 //HOME
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -38,6 +44,9 @@ Route::get('tipo_dt', 'TipoController@data_table')->middleware('auth');
 Route::resource('productos', 'ProductoController')->middleware('auth');
 Route::get('producto_dt', 'ProductoController@data_table')->middleware('auth');
 Route::get('list_types', 'ProductoController@list')->middleware('auth');
+
+Route::resource('ordenes', 'OrdenController')->middleware('auth');
+Route::get('orden_dt', 'OrdenController@data_table')->middleware('auth');
 
 
 Route::resource('rutinas', 'RutinaController')->middleware('auth');

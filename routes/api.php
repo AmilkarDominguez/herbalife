@@ -47,6 +47,10 @@ Route::get('planes', 'API\PlansController@list')->name('planes');
 Route::post('plans_by_client_id', 'API\PlansController@plans_by_client_id')->name('plans_by_client_id');
 Route::get('ejecuciones', 'API\EjecutionsController@list')->name('ejecuciones');
 Route::post('ejecutions_by_client_id', 'API\EjecutionsController@ejecutions_by_client_id')->name('ejecutions_by_client_id');
+Route::post('details_by_client_id', 'API\EjecutionsController@details_by_client_id')->name('details_by_client_id');
+
+Route::post('register_order', 'API\ProductsController@register_order')->name('register_order');
+
 Route::post('first_plans_by_client_id', 'API\PlansController@first_plans_by_client_id')->name('first_plans_by_client_id');
 
 Route::post('ejecution_check', 'API\EjecutionsController@ejecution_check')->name('ejecution_check');
@@ -62,9 +66,9 @@ Route::group([
     Route::post('register', 'API\Auth\AuthController@register');
 
     Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
-        
+        'middleware' => 'auth:api'
+    ], function () {
+
         Route::get('logout', 'API\Auth\AuthController@logout');
         Route::get('user', 'API\Auth\AuthController@user');
     });

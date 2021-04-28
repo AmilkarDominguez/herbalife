@@ -42,7 +42,7 @@ class UserController extends Controller
             return response()->json(['success'=>false,'msg'=>$validator->errors()->all()]);
         } 
         else{
-            User::create([
+           $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'state' => $request->state,
@@ -51,6 +51,11 @@ class UserController extends Controller
                 'remember_token' => str_random(10) 
 
             ]);
+            $tokenResult = $user->createToken('Token de acceso personal');
+            $token = $tokenResult->token;
+            if ($request->remember_me)
+                $token->expires_at = Carbon::now()->addWeeks(1);
+            $token->save();
             return response()->json(['success'=>true,'msg'=>'Registro existoso.']);
         }
     }
@@ -83,6 +88,7 @@ class UserController extends Controller
                 'remember_token' => str_random(10) 
 
             ]);
+
             return response()->json(['success'=>true,'msg'=>'Se actualizo existosamente.']);
         }
     }

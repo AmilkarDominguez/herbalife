@@ -2,16 +2,39 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Detail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Ejecution;
+use App\Routine;
 
 class EjecutionsController extends Controller
 {
     public function ejecutions_by_client_id(Request $request)
     {
-        return Ejecution::where('estado','ACTIVO')->where('client_id',$request->client_id)->with('client','plan')->get();
+        $ejecutions = Ejecution::where('estado','ACTIVO')->where('client_id',$request->client_id)->with('plan')->get();
+        /*$routine = Routine::where('estado','ACTIVO')->where('id',$ejecutions[0]->plan->routine_id)->firstOrFail();
+        
+        //$ejecutions->routine = $routine;
+
+        $datails = Detail::where('estado','ACTIVO')->where('routine_id',$routine->id)->with('product')->get();
+
+        $ejecutions->detalles = $datails;*/
+        return $ejecutions;
     }  
+    public function details_by_client_id(Request $request)
+    {
+        $ejecutions = Ejecution::where('estado','ACTIVO')->where('client_id',$request->client_id)->with('plan')->get();
+        $routine = Routine::where('estado','ACTIVO')->where('id',$ejecutions[0]->plan->routine_id)->firstOrFail();
+        
+        //$ejecutions->routine = $routine;
+
+        $datails = Detail::where('estado','ACTIVO')->where('routine_id',$routine->id)->with('product')->get();
+
+        
+        return $datails;
+    }  
+
     public function list()
     {
         return Ejecution::where('estado','ACTIVO')->with('client','plan')->get(); 

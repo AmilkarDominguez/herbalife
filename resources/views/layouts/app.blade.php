@@ -62,6 +62,8 @@
                                     <a class="dropdown-item" href="{{ route('institutional.index') }}">Institucional</a>
                                     <a class="dropdown-item" href="{{ route('tipos.index') }}">Tipos de productos</a>
                                     <a class="dropdown-item" href="{{ route('productos.index') }}">Productos</a>
+                                    <hr>
+                                    <a class="dropdown-item" href="{{ route('ordenes.index') }}">Ordenes</a>
                                 </div>
                             </li>
                         @endif
@@ -76,6 +78,13 @@
                                     <a class="dropdown-item" href="{{ route('rutinas.index') }}">Administrar planes</a>
                                     <a class="dropdown-item" href="{{ route('planes.index') }}">Asignar plan a cliente</a>
                                     <a class="dropdown-item" href="{{ route('ejecuciones.index') }}">Ejecuciones</a>
+
+                                    @if (Auth::user()->hasRole('ADMINISTRADOR'))
+                                        <hr>
+                                        <a class="dropdown-item" href="{{ route('users_admin.index') }}">Usuarios</a>
+                                    @endif
+                                  
+                                    
                                 </div>
                             </li>
                         @endif

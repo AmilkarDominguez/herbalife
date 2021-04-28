@@ -112,14 +112,14 @@
                             </div>
                             <div class="md-form mb-3">
                                 <label><b>Estatura (cm):</b></label>
-                                <input  type="number" class="form-control"  rows="4" id="estatura" name="estatura" placeholder="Estatura" required> 
+                                <input  type="number" class="form-control"  min="1" max="250" rows="4" id="estatura" name="estatura" placeholder="Estatura" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
                             </div>
                             <div class="md-form mb-3">
                                 <label><b>Peso (Kl):</b></label>
-                                <input  type="number" class="form-control"  rows="4" id="peso" name="peso" placeholder="Peso" required> 
+                                <input  type="number" class="form-control"   min="1" max="200" rows="4" id="peso" name="peso" placeholder="Peso" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>

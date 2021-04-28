@@ -328,7 +328,12 @@ function ImgPreview(input) {
 
 //fecha de entrada
 function dateEntry() {
+    var date = new Date();
+    //console.log(date);
+    date.setMonth(date.getMonth()-1200);
+    //console.log(date);
     $('#datetimepicker1').datetimepicker({
+        minDate: date,
         format: 'YYYY-MM-DD'
     });
 }
