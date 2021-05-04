@@ -93,7 +93,8 @@
                             </div>
 
                             <div class="md-form mb-3">
-                                <div class="md-form mb-3">
+                                <label><b>Hora de alarma:</b></label>
+                                {{-- <div class="md-form mb-3">
                                     <label><b>Hora de alarma:</b></label>
                                     <select class="form-control" name="hora_alarma" id="hora_alarma" required>
                                         <option disabled value="" selected>(Seleccionar)</option>
@@ -125,16 +126,16 @@
                                     <div class="invalid-feedback">
                                         Dato necesario.
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                {{-- <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
                                     <input type="text" id="hora_alarma" name="hora_alarma"
-                                        class="form-control datetimepicker-input" data-target="#datetimepicker2" required />
+                                        class="form-control datetimepicker-input" data-target="#datetimepicker3" required />
                                     <div class="input-group-append" data-target="#datetimepicker3"
                                         data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="icon-clock"></i></div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                             </div>
 
@@ -235,7 +236,7 @@
                                 </div>
                             </div>
                             <div class="md-form mb-3">
-                                <div class="md-form mb-3">
+                                {{-- <div class="md-form mb-3">
                                     <label><b>Hora de alarma:</b></label>
                                     <select class="form-control" name="hora_alarma2" id="hora_alarma2" required>
                                         <option disabled value="" selected>(Seleccionar)</option>
@@ -267,16 +268,16 @@
                                     <div class="invalid-feedback">
                                         Dato necesario.
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                {{-- <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                    <input type="text" id="hora_alarma" name="hora_alarma"
-                                        class="form-control datetimepicker-input" data-target="#datetimepicker2" required />
-                                    <div class="input-group-append" data-target="#datetimepicker3"
+                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                    <input type="text" id="hora_alarma2" name="hora_alarma2"
+                                        class="form-control datetimepicker-input" data-target="#datetimepicker4" required />
+                                    <div class="input-group-append" data-target="#datetimepicker4"
                                         data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="icon-clock"></i></div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                             </div>
                             <div class="md-form mb-3">
