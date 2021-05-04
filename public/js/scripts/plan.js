@@ -148,7 +148,7 @@ function Save() {
 // captura los datos
 function Edit(id) {
 
-    console.log(id);
+    //console.log(id);
     $.ajax({
         url: "planes/{plane}/edit",
         method: 'get',
@@ -170,10 +170,12 @@ function Edit(id) {
 var data_old;
 
 function show_data(obj) {
-    ClearInputs();
-    console.log(obj);
+    //ClearInputs();
+    //console.log(obj);
     obj = JSON.parse(obj);
     id = obj.id;
+    $("#mensaje2").val(obj.mensaje);
+    $("#hora_alarma2").val(obj.hora_alarma);
     /*$("user_id").val(obj.user_id);
     $("client_id").val(obj.client_id);
     $("routine_id").val(obj.routine_id);
@@ -187,7 +189,7 @@ function show_data(obj) {
     if (obj.estado == "INACTIVO") {
         $('#estado2_inactivo').prop('checked', true);
     }
-    $("#title-modal2").html("Editar estado");
+    $("#title-modal2").html("Editar datos");
 
     //data_old = $(".form-data2").serialize();
 
@@ -195,9 +197,12 @@ function show_data(obj) {
 };
 
 $("#btn-actualizar-estado").click(function () {
+
+
+
     var data_new = $(".form-data2").serialize();
     data_new += "&id=" + id;
-    console.log(data_new);
+    //console.log(data_new);
 
     //console.log($('#estado2_activo').val());
     //console.log($('#estado2_inactivo').val());

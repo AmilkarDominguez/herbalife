@@ -63,6 +63,8 @@ class PlanController extends Controller
 
         $Plan = Plan::find($request->id);
         $Plan->estado = $request->estado;
+        $Plan->mensaje = $request->mensaje2;
+        $Plan->hora_alarma = $request->hora_alarma2;
         $Plan->save();
 
         return response()->json(['success' => true, 'msg' => 'Se actualizo existosamente.']);
