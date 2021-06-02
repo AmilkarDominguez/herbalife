@@ -1,7 +1,9 @@
 Si no funciona el sistema
 
-error de login
+*error de login
+despues de migrarar
 php artisan passport:install --force
+php artisan passport:client --personal
 
 php artisan serve
 

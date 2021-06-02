@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Plan;
+use App\ClientDiet;
+use App\Diet;
+use App\Type;
 
 class PlansController extends Controller
 {
@@ -34,11 +37,34 @@ class PlansController extends Controller
 
             if ($metas_total) {
                 $aux = 100 / $metas_total;
-                $porcentaje =   ($metas_realizado * $aux)/100;
+                $porcentaje =   ($metas_realizado * $aux) / 100;
             }
             $plan->porcentaje = round($porcentaje, 2);
         }
 
+
+        //Dieta
+        $clientDiet = ClientDiet::where('client_id', $request->client_id)->first();
+
+        //$clientDiet = ClientDiet::all();
+        if ($clientDiet) {
+            $diet_ = Diet::find($clientDiet->diet_id);
+            $plan->diet = $diet_;
+        }
         return  $plan;
+    }
+    public function diet_by_client_id(Request $request)
+    {
+        /*$clientDiet = ClientDiet::find(1);
+        return $clientDiet->diet_id;*/
+
+
+
+        //return $request;
+        $clientDiet = ClientDiet::where('client_id', $request->client_id)->first();
+        //return $clientDiet->diet_id;
+
+        $Diet = Diet::find($clientDiet->diet_id);
+        return $Diet;
     }
 }

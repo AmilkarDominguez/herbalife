@@ -1,14 +1,14 @@
 var table;
 var id=0;
 
-var title_modal_data = "Registar Cliente";
+var title_modal_data = " Agregar Tipo";
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    dateEntry();
+    //ListDatatable();
     catch_parameters();
     ListDatatable();
 });
@@ -16,7 +16,6 @@ $(document).ready(function(){
 // datatable catalogos
 function ListDatatable()
 {
-
     table = $('#table').DataTable({
         //dom: 'lfBrtip',
         dom: 'lfrtip',
@@ -27,34 +26,32 @@ function ListDatatable()
             "url": "/js/assets/Spanish.json"
         },
         ajax: {
-            url: 'client_dt'
+            url: 'dieta_dt'
             
         },
         columns: [
-            { data: 'Imagen',   orderable: false, searchable: false },
-            { data: 'name'},
             { data: 'codigo'},
-            { data: 'direccion'},
-            { data: 'email'},
-            { data: 'estatura'},
-            { data: 'peso'},
-            { data: 'fecha_nacimiento'},
-            { data: 'sexo'},
-            { data: 'state',
+            { data: 'nombre'},
+            { data: 'desayuno'},
+            { data: 'merienda_am'},
+            { data: 'almuerzo'},
+            { data: 'merienda_pm'},
+            { data: 'cena'},
+            { data: 'estado',
             "render": function (data, type, row) {
-                    if (row.state === 'ACTIVO') {
+                    if (row.estado === 'ACTIVO') {
                         return '<center><p class="bg-success text-white"><b>ACTIVO</b></p></center>';
                     }
-                    else if (row.state === 'INACTIVO') {          
+                    else if (row.estado === 'INACTIVO') {          
                         return '<center><p class="bg-warning text-white"><b>INACTIVO</b></p></center>';
                     }
-                    else if (row.state === 'ELIMINADO') {          
+                    else if (row.estado === 'ELIMINADO') {          
                         return '<center><p class="bg-danger text-white"><b>ELIMINADO</b></p></center>';
                     }
                 }
             },
             { data: 'Editar',   orderable: false, searchable: false },
-            { data: 'Eliminar', orderable: false, searchable: false },
+            // { data: 'Eliminar', orderable: false, searchable: false },
         ],
         buttons: [
             {
@@ -105,7 +102,7 @@ function ListDatatable()
 // guarda los datos nuevos
 function Save() {
     $.ajax({
-        url: "client",
+        url: "dietas",
         method: 'post',
         data: catch_parameters(),
         success: function (result) {
@@ -122,13 +119,12 @@ function Save() {
         },
     });
     table.ajax.reload();
-    //location.reload();
 }
 
 // captura los datos
 function Edit(id) {
     $.ajax({
-        url: "client/{client}/edit",
+        url: "dietas/{dieta}/edit",
         method: 'get',
         data: {
             id: id
@@ -150,20 +146,17 @@ function show_data(obj) {
     ClearInputs();
     obj = JSON.parse(obj);
     id= obj.id;
-    $("#name").val(obj.name);
-    $("#direccion").val(obj.direccion);
-    $("#email").val(obj.email);
-    $("#estatura").val(obj.estatura);
-    $("#peso").val(obj.peso);
-    $("#sexo").val(obj.sexo);
-    $("#fecha_nacimiento").val(obj.fecha_nacimiento);
-    $('#image').attr('src', obj.logo);
-    $('#label_image').html(obj.logo);
-    if (obj.state == "ACTIVO") {
-        $('#state_activo').prop('checked', true);
+    $("#nombre").val(obj.nombre);
+    $("#desayuno").val(obj.desayuno);
+    $("#merienda_am").val(obj.merienda_am);
+    $("#almuerzo").val(obj.almuerzo);
+    $("#merienda_pm").val(obj.merienda_pm);
+    $("#cena").val(obj.cena);
+    if (obj.estado == "ACTIVO") {
+        $('#estado_activo').prop('checked', true);
     }
-    if (obj.state == "INACTIVO") {
-        $('#state_inactivo').prop('checked', true);
+    if (obj.estado == "INACTIVO") {
+        $('#estado_inactivo').prop('checked', true);
     }
     $("#title-modal").html("Editar Registro");
 
@@ -177,7 +170,7 @@ function Update() {
     var data_new = $(".form-data").serialize();
     if (data_old != data_new) {
         $.ajax({
-            url: "client/{client}",
+            url: "dietas/{dieta}",
             method: 'put',
             data: catch_parameters(),
             success: function (result) {
@@ -194,7 +187,6 @@ function Update() {
             },
         });
         table.ajax.reload();
-        //location.reload();
         
     }
 }
@@ -207,7 +199,7 @@ function Delete(id_) {
 }
 $("#btn_delete").click(function () {
     $.ajax({
-        url: "client/{client}",
+        url: "dietas/{dieta}",
         method: 'delete',
         data: {
             id: id
@@ -251,16 +243,14 @@ function catch_parameters()
     var data = $(".form-data").serialize();
     data += "&user_id="+user_id;
     data += "&id="+id;
-    data += "&extension_image=" + extension_image;
-    data +="&image=" + reader.result;
-    // console.log(data);
+    //console.log(data);
     return data;
     
 }
 
 // muestra el modal
 $("#btn-agregar").click(function () {
-    //console.log("arrived");
+    console.log("arrived");
     ClearInputs();
     $("#title-modal").html(title_modal_data);
     $("#modal_datos").modal("show");
@@ -301,40 +291,5 @@ function ClearInputs() {
     });
     //__Clean values of inputs
     $("#form-data")[0].reset();
-    $('#image').attr('src', '');
-    $('#label_image').html("Elegir archivo");
     id=0;
 };
-
-
-//Metodos para imagen
-var reader = new FileReader();
-var extension_image = "";
-$("#foto").change(function (e) {
-    ImgPreview(this);
-    $fileName = e.target.files[0].name;
-    extension_image = $fileName.replace(/^.*\./, '');
-    $('#label_image').html($fileName);
-    //console.log(extension_image);
-});
-function ImgPreview(input) {
-    if (input.files && input.files[0]) {
-        reader.onload = function (e) {
-            //console.log(e);
-            $('#image').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-//fecha de entrada
-function dateEntry() {
-    var date = new Date();
-    //console.log(date);
-    date.setMonth(date.getMonth()-1200);
-    //console.log(date);
-    $('#datetimepicker1').datetimepicker({
-        minDate: date,
-        format: 'YYYY-MM-DD'
-    });
-}

@@ -52,6 +52,8 @@ Route::post('details_by_client_id', 'API\EjecutionsController@details_by_client_
 Route::post('register_order', 'API\ProductsController@register_order')->name('register_order');
 
 Route::post('first_plans_by_client_id', 'API\PlansController@first_plans_by_client_id')->name('first_plans_by_client_id');
+Route::post('diet_by_client_id', 'API\PlansController@diet_by_client_id')->name('diet_by_client_id');
+
 
 Route::post('ejecution_check', 'API\EjecutionsController@ejecution_check')->name('ejecution_check');
 

@@ -40,6 +40,8 @@ Route::get('institutional_dt', 'InstitutionalController@data_table')->middleware
 Route::resource('tipos', 'TipoController')->middleware('auth');
 Route::get('tipo_dt', 'TipoController@data_table')->middleware('auth');
 
+Route::resource('dietas', 'DietaController')->middleware('auth');
+Route::get('dieta_dt', 'DietaController@data_table')->middleware('auth');
 
 Route::resource('productos', 'ProductoController')->middleware('auth');
 Route::get('producto_dt', 'ProductoController@data_table')->middleware('auth');

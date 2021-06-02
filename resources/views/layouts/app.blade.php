@@ -78,6 +78,7 @@
                                     <a class="dropdown-item" href="{{ route('rutinas.index') }}">Administrar planes</a>
                                     <a class="dropdown-item" href="{{ route('planes.index') }}">Asignar plan a cliente</a>
                                     <a class="dropdown-item" href="{{ route('ejecuciones.index') }}">Ejecuciones</a>
+                                    <a class="dropdown-item" href="{{ route('dietas.index') }}">Dietas</a>
 
                                     @if (Auth::user()->hasRole('ADMINISTRADOR'))
                                         <hr>
