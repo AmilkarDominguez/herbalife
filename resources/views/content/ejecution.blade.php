@@ -7,16 +7,35 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="card-title text-success">Ejecucions por Cliente</h2>
+                        <h2 class="card-title text-success">Ejecuciones por Cliente</h2>
                     </div>
-                    <div class="col-sm-6 d-flex justify-content-center">
+                    {{-- <div class="col-sm-6 d-flex justify-content-center">
                         <div class="md-form mb-3" id="select_client"></div>
                     </div>
                     <div class="col-sm-6 d-flex justify-content-center">
                         <button class="btn btn-success" id="btn-consultar">
                             <i class="icon-plus"></i>&nbsp;Consultar
                         </button>
-                    </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>Clientes registrados:</h3>
+                <div class="table-responsive">
+                    <table id="table_clients" class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <td>Nombre completo</td>
+                                <td>Código</td>                                
+                                <td>Seleccionar</td>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>

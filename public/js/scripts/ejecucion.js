@@ -9,6 +9,7 @@ $(document).ready(function () {
         }
     });
     SelectClients();
+    ListDatatableClents();
 });
 
 // datatable catalogos
@@ -24,7 +25,76 @@ $("#btn-consultar").click(function () {
 
 });
 
-function ListDatatable() {
+
+function ListDatatableClents() {
+    table = $('#table_clients').DataTable({
+        dom: 'lfBrtip',
+        //dom: 'lfrtip',
+        processing: true,
+        serverSide: true,
+        "paging": true,
+        language: {
+            "url": "/js/assets/Spanish.json"
+        },
+        ajax: {
+            url: 'list_clientes_ejecutions'
+            
+        },
+        columns: [
+            { data: 'name'},
+            { data: 'codigo'},
+
+            { data: 'Seleccionar',   orderable: false, searchable: false }
+        ],
+        buttons: [
+            {
+                text: '<i class="icon-eye"></i> ',
+                className: 'rounded btn-dark m-2',
+                titleAttr: 'Columnas',
+                extend: 'colvis'
+            },
+            {
+                text: '<i class="icon-download"></i><i class="icon-file-excel"></i>',
+                className: 'rounded btn-dark m-2',
+                titleAttr: 'Excel',
+                extend: 'excel',
+                exportOptions: {
+                    columns: [0, 1, 2]
+                }
+            },
+            {
+                text: '<i class="icon-download"></i><i class="icon-file-pdf"></i> ',
+                className: 'rounded btn-dark m-2',
+                titleAttr: 'PDF',
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [0, 1, 2]
+                }
+            },
+            {
+                text: '<i class="icon-download"></i><i class="icon-print"></i> ',
+                className: 'rounded btn-dark m-2',
+                titleAttr: 'Imprimir',
+                extend: 'print',
+                exportOptions: {
+                    columns: [0, 1, 2]
+                }
+            },
+            //btn Refresh
+            {
+                text: '<i class="icon-arrows-cw"></i>',
+                className: 'rounded btn-info m-2',
+                action: function () {
+                    table.ajax.reload();
+                }
+            }
+        ],
+    });
+};
+
+
+function ListDatatable(id) {
+    $("#table").dataTable().fnDestroy();
     table = $('#table').DataTable({
         dom: 'lfBrtip',
         //dom: 'lfrtip',
@@ -37,7 +107,7 @@ function ListDatatable() {
         ajax: {
             url: 'list_ejecutions',
             data: function (obj) {
-                obj.client_id = $("#client_id").val();
+                obj.client_id = id;
             }
         },
         columns: [{
@@ -118,7 +188,6 @@ function ListDatatable() {
 
 // METODOS NECESARIOS
 
-
 function SelectClients() {
     $.ajax({
         url: "list_clients",
@@ -129,7 +198,7 @@ function SelectClients() {
             code += '<select class="form-control" name="client_id" id="client_id" required>';
             code += '<option disabled value="" selected>(Seleccionar)</option>';
             $.each(result, function (key, value) {
-                code += '<option value="' + value.id + '">' + value.codigo + ' ' + value.name + '</option>';
+                code += '<option value="' + value.id + '">' + value.name + '</option>';
             });
             code += '</select>';
             code += '<div class="invalid-feedback">';
@@ -146,6 +215,7 @@ function SelectClients() {
 
     });
 }
+
 
 function SelectRoutines() {
     $.ajax({

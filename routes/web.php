@@ -73,4 +73,5 @@ Route::resource('client', 'ClientController')->middleware('auth');
 Route::get('client_dt', 'ClientController@data_table')->middleware('auth');
 
 Route::resource('ejecuciones', 'EjecutionController')->middleware('auth');
-Route::get('list_ejecutions', 'EjecutionController@data_table')->middleware('auth')->name('list_ejecutions');;
+Route::get('list_ejecutions', 'EjecutionController@data_table')->middleware('auth')->name('list_ejecutions');
+Route::get('list_clientes_ejecutions', 'EjecutionController@data_table_clients')->middleware('auth')->name('list_clientes_ejecutions');

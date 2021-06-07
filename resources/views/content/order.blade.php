@@ -37,6 +37,7 @@
                                 <td>Precio</td>
                                 <td>Cantidad</td>
                                 <td>Foto</td>
+                                <td>Fecha de registro</td>
                                 <td>Estado</td>
                                 <td>Editar</td>
                                 <td>Eliminar</td>

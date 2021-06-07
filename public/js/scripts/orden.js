@@ -39,6 +39,7 @@ function ListDatatable()
             { data: 'cantidad'},
             
             { data: 'Imagen',   orderable: false, searchable: false },
+            { data: 'created_at'},
             { data: 'estado',
             "render": function (data, type, row) {
                     if (row.estado === 'ACTIVO') {
