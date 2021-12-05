@@ -67,7 +67,7 @@ class UserController extends Controller
     public function update(Request $request)
     {   
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
+            'name'     => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'email'  => 'string|email|max:255',
             'email' => ['required',Rule::unique('users')->ignore($request->id),],
             'state'    => 'required|string',
