@@ -67,7 +67,7 @@
                         <div class="modal-body">
                             <div class="md-form mb-3">
                                 <label><b>Nombre:</b></label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" pattern="[a-zA-Z\s]*" required>
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>

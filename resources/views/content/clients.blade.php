@@ -84,7 +84,7 @@
                             </div> 
                             <div class="md-form mb-3">
                                 <label><b>Nombre completo:</b></label>
-                                <input  type="text" class="form-control"  rows="4" id="name" name="name" placeholder="Nombre completo" required> 
+                                <input pattern="[a-zA-Z\s]*"  type="text" class="form-control"  rows="4" id="name" name="name" placeholder="Nombre completo" required> 
                                 <div class="invalid-feedback">
                                     Dato necesario.
                                 </div>
